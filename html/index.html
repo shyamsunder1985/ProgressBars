@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Optus FrontEnd Assignment - Progress Bars</title>
+</head>
+
+<head>
+<link rel="stylesheet" type="text/css" href='../css/progressBar.css'>
+</head>
+
+<body>
+  
+  <div id='container'></div>
+  <script id="template" type='text/ractive'>
+  <h1>Optus FrontEnd Assignment - Progress Bars</h1>
+  <br>
+  <h2>Please test my progress bars by clicking control buttons.</h2>     
+  <br>
+ 
+  {{#each progressbars}} 
+  <p>Slide/ click to adjust this progress bar.</p>
+        {{#if value < 100}}
+            <div class="progress-bar-fill" style="width: {{(setValue(value))/2}}%">
+                <span class="progress-label">{{setValue(value)}}%</span>
+            </div>
+        {{/if}}
+
+        {{#if value>=100}}
+            <div class="progress-bar-fill-red" style="width: 50%">
+                <span class="progress-label">{{value}}%</span>
+            </div>
+        {{/if}}
+  {{/each}}
+  <br><br>
+  <select value='{{selectedProgress}}'>
+        <option selected disabled>Select a progress bar</option>
+        {{#each progressbars :index}}
+        <option value='{{index}}'>{{name}}</option>
+        {{/each}}
+ </select>
+
+    {{#each amounts}}
+        <button disabled='{{selectedProgress == null}}' on-click='adjust(this)'>{{this > 0 ? '+' : ''}}{{this}}</button>
+    {{/each}}  
+  <br><br><br>
+  <br><br><br>
+  <h5>ShyamSunder R.N</h5><h5>+919986438638</h5>
+  </script>
+
+  <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
+
+  <script src='../js/main.js'></script>
+</body>
+</html>
